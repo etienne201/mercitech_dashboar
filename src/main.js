@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 
 // Store
 
-import store from './store';
+import store from './store/index';
 
 // styles
 
