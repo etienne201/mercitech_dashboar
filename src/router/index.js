@@ -18,6 +18,16 @@ import Register from '@/views/auth/Register.vue';
 
 import Home from '@/views/Home.vue';
 
+// views for Products layou 
+
+ import Products from '@/views/products/Product.vue';
+ import Add_product from '@/views/products/Add-product.vue';
+ import Edit_product from '@/views/products/Edit-product.vue';
+ 
+ // Views for Menbers layou
+
+ import Menbers from '@/views/pages/Menbers.vue';
+
 const routes = [
   {
     path: '/admin',
@@ -27,6 +37,29 @@ const routes = [
       {
         path: '/admin/dashboard',
         component: Dashboard,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    redirect: '/admin/dashboard/product',
+    component: Default,
+    children: [
+      {
+        path: '/admin/dashboard/products',
+        component: Products,
+      },
+      {
+        path: '/admin/dashboard/Add-products',
+        component: Add_product,
+      },
+      {
+        path: '/admin/dashboard/Edit-products',
+        component: Edit_product,
+      },
+      {
+        path: '/admin/dashboard/Menbers',
+        component: Menbers,
       },
     ],
   },
@@ -45,11 +78,16 @@ const routes = [
       },
     ],
   },
+ 
   {
     path: '/',
     name: 'Home',
     component: Home,
   },
+
+ 
+ 
+ 
   {
     path: '/about',
     name: 'About',
@@ -59,6 +97,8 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '@/views/About.vue'),
   },
+ 
+  
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ];
 
