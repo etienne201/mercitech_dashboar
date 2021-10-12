@@ -1,11 +1,9 @@
 <template>
-  <div class="items-center justify-between w-full px-8 py-6 border-t-2 lg:flex">
-    <p class="mb-2 lg:mb-0">© Copyright 2021</p>
-
-    <div class="flex">
-      <a href="#" class="mr-6 hover:text-gray-900">Terms of Service</a>
-      <a href="#" class="mr-6 hover:text-gray-900">Privacy Policy</a>
-      <a href="#" class="hover:text-gray-900">About Us</a>
+  <div class="bg-white border-t-4 border-primary">
+    <div class="container px-6 py-2 mx-auto text-sm">
+      <div class="flex justify-center sm:justify-start">
+        <p>&copy; {{ year }} Mecitech. All rights reserved</p>
+      </div>
     </div>
   </div>
 </template>
@@ -13,5 +11,8 @@
 <script>
 export default {
   name: 'Footer',
+  data: () => ({
+    year: new Date().getFullYear(),
+  }),
 };
 </script>

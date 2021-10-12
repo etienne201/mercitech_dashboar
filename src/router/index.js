@@ -1,109 +1,90 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-// layouts
+// Pages
 
-import Default from '@/layouts/Default.vue';
-import Auth from '@/layouts/Auth.vue';
+import Dashboard from '@/pages/Dashboard.vue';
+import Login from '@/pages/Login.vue';
+import Page404 from '@/pages/404.vue';
+import Products from '@/pages/Product.vue';
+import AddProduct from '@/pages/AddProduct.vue';
+import EditProduct from '@/pages/EditProduct.vue';
+import Customers from '@/pages/Customers.vue';
+import Analyses from '@/pages/Analyses.vue';
+import Sales from '@/pages/Sales.vue';
+import Modal from '@/pages/Modal.vue';
+import Form from '@/pages/Form.vue';
 
-// views for Admin layout
-
-import Dashboard from '@/views/admin/Dashboard.vue';
-
-// views for Auth layout
-
-import Login from '@/views/auth/Login.vue';
-import Register from '@/views/auth/Register.vue';
-
-// views without layouts
-
-import Home from '@/views/Home.vue';
-
-// views for Products layou 
-
- import Products from '@/views/products/Product.vue';
- import Add_product from '@/views/products/Add-product.vue';
- import Edit_product from '@/views/products/Edit-product.vue';
- 
- // Views for Menbers layou
-
- import Menbers from '@/views/pages/Menbers.vue';
-
+/**
+ * @type {import('vue-router').RouteRecordRaw[]}
+ */
 const routes = [
   {
-    path: '/admin',
-    redirect: '/admin/dashboard',
-    component: Default,
-    children: [
-      {
-        path: '/admin/dashboard',
-        component: Dashboard,
-      },
-    ],
-  },
-  {
-    path: '/admin',
-    redirect: '/admin/dashboard/product',
-    component: Default,
-    children: [
-      {
-        path: '/admin/dashboard/products',
-        component: Products,
-      },
-      {
-        path: '/admin/dashboard/Add-products',
-        component: Add_product,
-      },
-      {
-        path: '/admin/dashboard/Edit-products',
-        component: Edit_product,
-      },
-      {
-        path: '/admin/dashboard/Menbers',
-        component: Menbers,
-      },
-    ],
-  },
-  {
-    path: '/auth',
-    redirect: '/auth/login',
-    component: Auth,
-    children: [
-      {
-        path: '/auth/login',
-        component: Login,
-      },
-      {
-        path: '/auth/register',
-        component: Register,
-      },
-    ],
-  },
- 
-  {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Login',
+    component: Login,
+    meta: { layout: 'empty' },
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: Products,
+  },
+  {
+    path: '/product/add',
+    name: 'AddProduct',
+    component: AddProduct,
+  },
+  {
+    path: '/product/edit',
+    name: 'EditProduct',
+    component: EditProduct,
+  },
+  {
+    path: '/customers',
+    name: 'Customers',
+    component: Customers,
+  },
+  {
+    path: '/analyses',
+    name: 'Analyses',
+    component: Analyses,
+  },
+  {
+    path: '/sales',
+    name: 'Sales',
+    component: Sales,
+  },
+  {
+    path: '/modal',
+    name: 'Modal',
+    component: Modal,
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    component: Form,
+  },
+  {
+    path: '/404',
+    name: 'PageNotFound',
+    component: Page404,
+    meta: { layout: 'empty' },
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('@/pages/Settings.vue'),
   },
 
- 
- 
- 
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-  },
- 
-  
-  { path: '/:pathMatch(.*)*', redirect: '/' },
+  { path: '/:pathMatch(.*)*', redirect: '/404' },
 ];
 
 const router = createRouter({
-  // history: createWebHashHistory(),
   history: createWebHistory(),
   routes,
 });

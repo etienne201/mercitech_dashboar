@@ -16,4 +16,14 @@ import App from './App.vue';
 
 import router from './router';
 
-createApp(App).use(store).use(router).mount('#app');
+// Layouts
+
+import DashboardLayout from '@/layouts/DashboardLayout.vue';
+import EmptyLayout from '@/layouts/EmptyLayout.vue';
+
+createApp(App)
+  .component('default-layout', DashboardLayout)
+  .component('empty-layout', EmptyLayout)
+  .use(store)
+  .use(router)
+  .mount('#app');
